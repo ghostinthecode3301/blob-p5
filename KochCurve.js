@@ -3,7 +3,7 @@ let k;
 function setup() {
     createCanvas(710, 400);
     frameRate(1);  // Animate slowly
-    k = new KochFractal(); // the first line
+    k = new KochFractal(20, 380, 690, 380); // the first line
 }
 
 function draw() {
@@ -74,10 +74,10 @@ class KochLine {
 // A class to manage the list of line segments in the snowflake pattern
 
 class KochFractal {
-    constructor() {
-        this.start = createVector(0,height-20);   // A p5.Vector for the start
-        this.end = createVector(width,height-20); // A p5.Vector for the end
-        this.lines = [];                         // An array to keep track of all the lines
+    constructor(x1 ,x2, x3, x4) {
+        this.start = createVector(x1, x2); // A p5.Vector for the start
+        this.end = createVector(x3, x4); // A p5.Vector for the end
+        this.lines = []; // An array to keep track of all the lines
         this.count = 0;
         this.restart();
     }
@@ -114,7 +114,7 @@ class KochFractal {
     // Step 3: Return the new arraylist and it becomes the list of line segments for the structure
 
     // As we do this over and over again, each line gets broken into 4 lines, which gets broken into 4 lines, and so on. . .
-    iterate(before) {
+    iterate() {
         let now = [];    // Create emtpy list
         for(let i = 0; i < this.lines.length; i++) {
             let l = this.lines[i]; // so we have line
@@ -133,3 +133,4 @@ class KochFractal {
         return now;
     }
 }
+
